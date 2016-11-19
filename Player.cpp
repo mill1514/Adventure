@@ -2,6 +2,13 @@
 #include <vector>
 #include <string>
 #include <time.h>
+#include <algorithm>
+
+Player::Player() 
+{
+	this->age = 0;
+	this->name = "Nobody";
+}
 
 Player::Player(int age, std::string name) 
 {
@@ -28,7 +35,8 @@ Player::getName() {return this->name;}
 std::string
 Player::generateName() 
 {
-	// In order to gen the names
+	// In order to gen the names, 
+	// english scrabble distrobution
 	std::vector<char> cons {'b','b','b',
 			'c','c','c',
 			'd','d','d','d',
@@ -48,7 +56,7 @@ Player::generateName()
 
 	// GEN THE NAMES!
 	std::string ret;
-	while((ret.length() < 3) || (rand() % 5 != 0)) 
+	while( ((ret.length() < 3) || (rand() % 5 != 0)) || (!contains(ret, vows))) 
 	{
 		if (rand() % 3 == 0) {
 			ret += vows[rand() % vows.size()];
@@ -60,3 +68,16 @@ Player::generateName()
 	return ret;
 
 }
+
+// Returns 1 if the string word has any letters that are in check.
+// Otherwise, returns 0.
+int Player::contains(std::string word, std::vector<char> check) 
+{
+	for (int i = 0; i < word.length(); i++) 
+	{
+		if (std::find(check.begin(), check.end(), word[i]) != check.end()) 
+		{ return 1; }
+	}
+	return 0;
+}
+

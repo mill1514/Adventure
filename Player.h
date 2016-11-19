@@ -3,7 +3,7 @@
 #define PLAYER_H
 
 #include <string>
-
+#include <vector>
 class Player 
 {
 
@@ -13,13 +13,14 @@ class Player
 		std::string name;
 	
 	public :
-
+		Player();
 		Player(int age, std::string name);
 		void setAge(int age);
 		int getAge();
 		void setName(std::string name);
 		std::string getName();
 		std::string generateName();
+		int contains(std::string word, std::vector<char> check);
 
 };
 
