@@ -15,9 +15,11 @@ class Player
 	public :
 
 		Player(int age, std::string name);
+		void setAge(int age);
 		int getAge();
+		void setName(std::string name);
 		std::string getName();
-
+		std::string generateName();
 
 };
 

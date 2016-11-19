@@ -12,5 +12,5 @@ Text Game!
 
 	age picking determined by waiting
 	name picking determined by indecisiveness
-	
+		name generator! 	
 
