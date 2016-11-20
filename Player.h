@@ -16,7 +16,8 @@ class Player
 
 		int age;
 		std::string name;
-	
+		std::string generateName();
+
 	public :
 		Player();
 		Player(int age, std::string name);
@@ -24,7 +25,6 @@ class Player
 		int getAge();
 		void setName(std::string name);
 		std::string getName();
-		std::string generateName();
 		void setNameFun();
 				
 

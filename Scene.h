@@ -22,7 +22,11 @@ class Scene
 		std::vector<Scene *> scenes_nearby; // Scenes you can go to immediately  
 
 	public :
-	
+		Scene(std::string name, 
+			int id,
+			std::string description, 
+			std::vector<item> items_nearby, 
+			std::vector<Scene *> scenes_nearby);	
 		std::string name;
 		std::string description;
 		

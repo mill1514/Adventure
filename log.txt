@@ -1,0 +1,23 @@
+Trial map1:
+
+	Four rooms in a square:
+
+		2 -- 1
+		|    |
+		3 -- 4
+
+	All empty
+
+	1: 2 & 4
+	2: 1 & 3
+	3: 2 & 4
+	4: 1 & 3
+	
+	ids are the nums
+	names are the ids phonetically
+	no items
+
+	for loading:
+		for now, just do it in main.cpp	
+
+
