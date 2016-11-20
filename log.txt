@@ -15,7 +15,8 @@ Trial map1:
 	
 	ids are the nums
 	names are the ids phonetically
-	no items
+	one item in each room, random stuff related to id of room
+		id is scene id twice ie scene 1 item 11
 
 	for loading:
 		for now, just do it in main.cpp	

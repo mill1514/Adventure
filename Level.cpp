@@ -1,7 +1,7 @@
 #include "Level.h"
 #include <vector>
 #include <string>
-
+#include <curses.h>
 Level::Level(std::string name, std::vector<Scene *> scenes) 
 {
 	this->name = name;
@@ -12,6 +12,7 @@ void
 Level::play(Player * main)
 {
 
-	printf("%s is playing %s\n", main->getName().c_str(), this->name.c_str());
-	// This is kinda a big function
+	WINDOW *mywindow;
+	mywindow = initscr();
+
 }
