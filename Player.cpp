@@ -6,13 +6,14 @@
 
 Player::Player() 
 {
+	srand(time(0));
 	this->age = 0;
 	this->name = "Nobody";
 }
 
 Player::Player(int age, std::string name) 
 {
-
+	srand(time(0));
 	this->age = age;
 	this->name = name;
 
@@ -66,6 +67,23 @@ Player::generateName()
 	}
 
 	return ret;
+
+}
+
+void 
+Player::setNameFun() {
+
+        // Pick a name!
+        char * response = new char[10]; std::string temp_name;
+        do {
+                temp_name = this->generateName();
+                printf("Is %s a good name? (y/n)\n", temp_name.c_str());
+                scanf("%s", response);
+        }
+        while (response[0] != 'y');
+
+        printf("%s is an excellent name!\n", temp_name.c_str());
+        this->setName(temp_name);
 
 }
 

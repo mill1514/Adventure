@@ -4,6 +4,11 @@
 
 #include <string>
 #include <vector>
+
+
+
+
+
 class Player 
 {
 
@@ -20,6 +25,10 @@ class Player
 		void setName(std::string name);
 		std::string getName();
 		std::string generateName();
+		void setNameFun();
+				
+
+		// Not sure if should be in the player class. Doesn't need to be.
 		int contains(std::string word, std::vector<char> check);
 
 };
