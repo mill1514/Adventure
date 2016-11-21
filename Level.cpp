@@ -12,7 +12,12 @@ void
 Level::play(Player * main)
 {
 
-	WINDOW *mywindow;
-	mywindow = initscr();
+	initscr();
+	printw("Hello, %s, and welcome to adventure!", main->getName().c_str());
+
+	refresh();
+
+	getch();
+	endwin();
 
 }
