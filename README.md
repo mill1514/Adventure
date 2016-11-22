@@ -1,8 +1,8 @@
 # "Adventure!"
-This is a text-based 'engine' type-deal written in c++. This 'engine' uses the curses library.
+This is a text-based 'engine' type-deal written in c++, meant entirely for the terminal. This 'engine' uses the curses library.
 
 # Player
-First off, there's a player. It has a name and everything. It's name is picked randomly.
+First off, there's a player. It has a name and everything. It's name is picked randomly; you either like the name or you generate a new one.
 
 # Scene
 Then, we have Scenes. These are individual rooms. They have items in them and passageways to other rooms.
