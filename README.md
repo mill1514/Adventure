@@ -18,4 +18,19 @@ At any time, you can quit with 'quit'.
 
 
 # Loading Levels
-I haven't really solved the issue of how to gracefully load levels, so as of now, I simply do it in the main.cpp immediately.
+To load a level, all you need to do is have the filename of the level. Make sure it is in the same directory.
+
+Level * myLevel = new Level("level1.txt");
+
+level text files are in this format:
+
+ // <name of level>
+ // <scene1_name>,<scene1_id>,<scene1_desc>
+ // <scene1_item1_id>,<scene1_item1_name>;<scene1_item1_id>,<scene1_item1_name>; ect..
+ // <scene1_scenes_nearby>
+ // <scene2_name>,<scene2_id>,<scene2_desc>
+ // <scene2_item1_id>,<scene2_item1_name>;<scene2_item1_id>,<scene2_item1_name>; ect..
+ // <scene2_scenes_nearby>
+ // ect..
+ 
+ This will almost definitely change as the I add more capabilities, like npcs and puzzle mechanics for interaction.
