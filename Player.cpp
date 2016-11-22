@@ -66,6 +66,10 @@ Player::generateName()
 		}
 	}
 
+	// Capitalize it
+
+	ret[0] = toupper(ret[0]);
+
 	return ret;
 
 }

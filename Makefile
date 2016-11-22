@@ -1,6 +1,6 @@
 all: Game
 
-Game: main.cpp Player.cpp Player.h Scene.cpp Scene.h Level.cpp Level.h
-	g++ -std=c++11 -g -o Game main.cpp Player.cpp Player.h Scene.cpp Scene.h Level.cpp Level.h -lcurses
+Game: main.cpp Player.cpp Scene.cpp Level.cpp
+	g++ -std=c++11 -g -o Game main.cpp Player.cpp Scene.cpp Level.cpp -lcurses
 clean:
 	rm -rf Game

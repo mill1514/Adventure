@@ -5,16 +5,20 @@
 #include <vector>
 #include "Player.h"
 #include "Scene.h"
+
+using namespace std;
+
 class Level
 {
 	private:
 
-		std::vector<Scene *> scenes;
 
 	public:
-		Level(std::string name, std::vector<Scene *> scenes);	
+		vector<Scene *> scenes;
+		Level(string name, vector<Scene *> scenes);	
 		void play(Player * main);
-		std::string name;
+		string name;
+		vector<string> separate(string target, char delim);
 
 };
 
