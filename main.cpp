@@ -3,14 +3,23 @@
 #include "Level.h"
 #include <stdio.h>
 
-int main() {
+int main(int argc, char* argv[]) {
 
 	Player * main = new Player();
 	main->setNameFun();
 	
-	Level * trial_level1 = new Level("trial.txt");
+	Level * lvl;
 
-	trial_level1->play(main);
+	if (argc == 2) 
+	{
+		lvl = new Level(argv[1]);
+	} 
+	else 
+	{
+		lvl = new Level("trial.txt");
+	}
+
+	lvl->play(main);
 
 	return 0;
 }

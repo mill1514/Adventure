@@ -91,20 +91,25 @@ Level::Level(string filename)
 	fin.close();
 }
 
+
+// Plays a level with a given player.
 void
 Level::play(Player * main)
 {
 
 
 	// -----------INTRO--------------
-	string msg = main->getName() + "'s Adventure";
+	string msg1 = main->getName() + "'s Adventure:";
+	string msg2 = this->name;
 	initscr();
 	
 	// Get screen dims
 	int row, col;
 	getmaxyx(stdscr, row, col);
 	
-	mvprintw(row/2, (col - msg.length())/2, msg.c_str());
+	mvprintw(row/2, (col - msg1.length())/2, msg1.c_str());
+	mvprintw(row/2+1, (col - msg2.length())/2, msg2.c_str());
+	move(row-1, 0);
 	refresh();
 	getch();
 	clear();
