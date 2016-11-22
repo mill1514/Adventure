@@ -15,6 +15,7 @@ class Level
 
 	public:
 		vector<Scene *> scenes;
+		Level(string filename);
 		Level(string name, vector<Scene *> scenes);	
 		void play(Player * main);
 		string name;

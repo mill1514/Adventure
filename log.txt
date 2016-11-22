@@ -27,3 +27,18 @@ Trial map1:
 		for now, just do it in main.cpp	
 
 
+
+improvables:
+
+
+	-Find a better way to load (Some kind of level file?)
+		-Initialize Level with filename
+		-./Game <filename>
+	-Try to safegaurd against resizing
+	-Clean stuff up with more functions
+	-Implement "get"
+	-Graphic(s)?
+	-put "using namespace std" through entire code body
+
+
+

@@ -1,9 +1,11 @@
 #include "Level.h"
+#include "Scene.h"
 #include <vector>
 #include <string>
 #include <curses.h>
 #include <sstream>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -11,6 +13,82 @@ Level::Level(string name, vector<Scene *> scenes)
 {
 	this->name = name;
 	this->scenes = scenes;
+}
+
+
+// Loads a level from text file. Just beautiful.
+// 
+// Format:
+//
+// <name of level>
+// <scene1_name>,<scene1_id>,<scene1_desc>
+// <scene1_item1_id>,<scene1_item1_name>;<scene1_item1_id>,<scene1_item1_name>; ect..
+// <scene1_scenes_nearby>
+// <scene2_name>,<scene2_id>,<scene2_desc>
+// <scene2_item1_id>,<scene2_item1_name>;<scene2_item1_id>,<scene2_item1_name>; ect..
+// <scene2_scenes_nearby>
+// ect..
+//
+//
+// May change later.
+//
+//
+Level::Level(string filename) 
+{
+	ifstream fin;
+	fin.open(filename);
+
+	string name;
+	getline(fin, name);
+	
+	string line;
+	vector<string> nameIdDesc;
+	vector<string> group;
+	vector<string> single_item;
+
+	vector<Scene *> scenes;
+	while ( getline(fin, line) )
+	{
+		vector<item> items_nearby;
+		vector<int> scenes_nearby;
+
+		// Split first line of scene into 3 pieces
+		nameIdDesc = this->separate(line, ',');
+
+		// Get items_nearby
+		getline(fin, line);
+		group = this->separate(line, ';');
+		for (int i = 0; i < group.size(); i++) 
+		{
+			// Sep item by commas, make item, push item
+			single_item = this->separate(group[i], ',');
+			item done = {atoi(single_item[0].c_str()), single_item[1]};
+			items_nearby.push_back(done);
+		}
+
+		// Get scenes_nearby
+		getline(fin, line);
+		group = this->separate(line, ',');
+		for (int i = 0; i < 4; i++) 
+		{
+			// Convert string to int and push to scenes_nearby
+			scenes_nearby.push_back(atoi(group[i].c_str()));
+		}
+	
+		Scene * temp_scene = new Scene(nameIdDesc[0],
+						atoi(nameIdDesc[1].c_str()),
+						nameIdDesc[2],
+						items_nearby,
+						scenes_nearby);
+		
+		scenes.push_back(temp_scene);
+
+	}
+
+	this->scenes = scenes;
+	this->name = name;
+
+	fin.close();
 }
 
 void

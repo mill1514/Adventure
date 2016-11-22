@@ -1,0 +1,13 @@
+Trial
+One,0,The first room in the trial. The second room lies WEST and the fourth room lies SOUTH.
+11,Partridge;12,Bongos
+-1,-1,3,1
+Two,1,The second room in the trial. The first room lies EAST and the third room lies SOUTH.
+22,Turtle Dove;23,Steve Harvey
+-1,0,2,-1
+Three,2,The third room in the trial. The second room lies NORTH and the fourth room lies EAST.
+33,French Hen;34,Catheter
+1,3,-1,-1
+Four,3,The fourth room in the trial. The first room lies NORTH and the third room lies WEST.
+44,Calling Bird;45,Laxatives
+0,-1,-1,2

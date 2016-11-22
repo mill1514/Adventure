@@ -6,9 +6,11 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 struct item {
 	int id;
-	std::string name;
+	string name;
 };
 
 class Scene
@@ -18,19 +20,19 @@ class Scene
 	private :
 
 		int id;
-		std::string name;
-		std::string description;
+		string name;
+		string description;
 
 	public :
 		Scene(std::string name, 
 			int id,
-			std::string description, 
-			std::vector<item> items_nearby, 
-			std::vector<int> scenes_nearby);	
-		std::vector<int> scenes_nearby; // Scenes you can go to immediately  
-		std::vector<item> items_nearby; // Items in this scene
-		std::string getName();
-		std::string getDescription();
+			string description, 
+			vector<item> items_nearby, 
+			vector<int> scenes_nearby);	
+		vector<int> scenes_nearby; // Scenes you can go to immediately  
+		vector<item> items_nearby; // Items in this scene
+		string getName();
+		string getDescription();
 		int getID();
 		
 };
