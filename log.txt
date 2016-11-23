@@ -31,16 +31,15 @@ Trial map1:
 improvables:
 
 
-	-./Game <filename> ?
 	-Try to safegaurd against resizing
 	-Clean stuff up with more functions
 	-Implement "get"
 	-Graphic(s)?
 		-Map? Shows rooms you've been in?
-			- compass too
+			- compass too, shows options for movement
 	-put "using namespace std" through entire code body
-
-
+	-Grafitti on the wall that says "<player> SUX"
+		-formatted string in the .lvl file?
 
 
 

@@ -135,6 +135,13 @@ Level::play(Player * main)
 		// In the top right, print the name of the room you're in
 		mvprintw(0, 0, currScene->getName().c_str());
 
+		// Print a compass out 
+		// that also shows your current movement options.
+		if (currScene->scenes_nearby[0] != -1) {mvprintw((row/2)-2, col/2, "|");}
+		if (currScene->scenes_nearby[2] != -1) {mvprintw((row/2)+2, (col/2), "|");}
+		if (currScene->scenes_nearby[1] != -1) {mvprintw(row/2, (col/2)+2, "--");}
+		if (currScene->scenes_nearby[3] != -1) {mvprintw(row/2, (col/2)+2, "--");}
+
 		// Print the description of the room you're in
 		// near the bottom (4 rows up).
 		mvprintw(row-4, 0, currScene->getDescription().c_str());
@@ -147,7 +154,7 @@ Level::play(Player * main)
 		sep_response = separate(response, ' ');
 
 		// Try to travel to a different room.
-		if (sep_response[0] == "go") 
+		if (sep_response[0] == "go" && sep_response.size() > 1) 
 		{
 			string r = sep_response[1];
 
@@ -202,7 +209,6 @@ Level::play(Player * main)
 			}
 		}
 
-		//gameOver = 1;	
 
 	}
 

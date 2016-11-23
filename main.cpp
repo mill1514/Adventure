@@ -12,11 +12,13 @@ int main(int argc, char* argv[]) {
 
 	if (argc == 2) 
 	{
-		lvl = new Level(argv[1]);
+		string filename = argv[1];
+		filename += ".lvl";
+		lvl = new Level(filename);
 	} 
 	else 
 	{
-		lvl = new Level("trial.txt");
+		lvl = new Level("trial.lvl");
 	}
 
 	lvl->play(main);
