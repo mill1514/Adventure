@@ -137,10 +137,11 @@ Level::play(Player * main)
 
 		// Print a compass out 
 		// that also shows your current movement options.
-		if (currScene->scenes_nearby[0] != -1) {mvprintw((row/2)-2, col/2, "|");}
-		if (currScene->scenes_nearby[2] != -1) {mvprintw((row/2)+2, (col/2), "|");}
-		if (currScene->scenes_nearby[1] != -1) {mvprintw(row/2, (col/2)+2, "--");}
-		if (currScene->scenes_nearby[3] != -1) {mvprintw(row/2, (col/2)+2, "--");}
+		if (currScene->scenes_nearby[0] != -1) {mvprintw((row/2)-2, (col/2), "|");} // North
+		if (currScene->scenes_nearby[1] != -1) {mvprintw((row/2), (col/2)+2, "--");} // East
+		mvprintw(row/2, col/2, "x");
+		if (currScene->scenes_nearby[2] != -1) {mvprintw((row/2)+2, (col/2), "|");} // South
+		if (currScene->scenes_nearby[3] != -1) {mvprintw((row/2), (col/2)-3, "--");} // West
 
 		// Print the description of the room you're in
 		// near the bottom (4 rows up).
@@ -184,7 +185,6 @@ Level::play(Player * main)
 			}
 			items.append(currScene->items_nearby[currScene->items_nearby.size()-1].name);
 			items.append((3 * (col)) - items.length(), ' ');
-			items.append("ENTER to continue...");
 
 			mvprintw(row-4, 0, items.c_str());
 			move(row-1, 0);

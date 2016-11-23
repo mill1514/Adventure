@@ -42,4 +42,12 @@ improvables:
 		-formatted string in the .lvl file?
 
 
+bitch_town.lvl:
 
+	-level with more complex shape
+	-Meant to test compass
+	-Also to see how making levels is
+		-Not bad
+	
+	-Array of visited rooms?
+		-Not sure if should be in player or level
