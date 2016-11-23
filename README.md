@@ -24,20 +24,15 @@ Level * myLevel = new Level("level1.txt");
 
 level text files are in this format:
 
-\<name of level\>
 
-\<scene1_name\>,\<scene1_id\>,\<scene1_desc\>
+<b>[string:level name]</b> //Line 1 is always the level name<br>
+//The rest of the lines can repeat as much as necessary. <br>
+//For every 3 additional lines past this point, a new scene is added to the game.<br>
+<b>[string:scene 1 name],[int: scene 1 id],[string: scene 1 description]</b> <br>// Name, ID, and Description separated by commas.<br>
+<b>[scene1_item1_id],[scene1_item1_name];[scene1_item2_id],[scene1_item2_name]; ect...</b> <br>//List of items in the scene separated by semicolon. Individual traits of items separated by commas.
+<b>[scene1_scenes_nearby]</b><br> //This is an int[4], each number is separated by commas. The numbers represent ID of rooms to the [N,E,S,W]<br>
+ect...
 
-\<scene1_item1_id\>,\<scene1_item1_name\>;\<scene1_item1_id\>,\<scene1_item1_name\>; ect..
-
-\<scene1_scenes_nearby\>
-
-\<scene2_name\>,\<scene2_id\>,\<scene2_desc\>
-
-\<scene2_item1_id\>,\<scene2_item1_name\>;\<scene2_item1_id\>,\<scene2_item1_name\>; ect..
-
-\<scene2_scenes_nearby\>
-
-ect..
+The ids are pointless for now; I use the position of the scene on the list as the reference for now. I figured I'd find a use for them down the road.
  
 This will almost definitely change as the I add more capabilities, like npcs and puzzle mechanics for interaction.
