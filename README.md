@@ -22,7 +22,11 @@ To load a level, all you need to do is have the filename of the level. Make sure
 
 Level * myLevel = new Level("level1.txt");
 
-level text files are in this format:
+Just because I can, I started saving them as .lvl files. Doesn't matter. 
+Currently, you can call the game and a level you want with
+<b>./Game myLevel</b>
+
+level files are in this format:
 
 
 <b>[string:level name]</b> //Line 1 is always the level name<br>
