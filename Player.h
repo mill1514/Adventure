@@ -4,10 +4,9 @@
 
 #include <string>
 #include <vector>
+#include "Scene.h"
 
-
-
-
+using namespace std;
 
 class Player 
 {
@@ -15,21 +14,22 @@ class Player
 	private :
 
 		int age;
-		std::string name;
-		std::string generateName();
+		string name;
+		string generateName();
 
 	public :
 		Player();
-		Player(int age, std::string name);
+		Player(int age, string name);
 		void setAge(int age);
 		int getAge();
-		void setName(std::string name);
-		std::string getName();
+		void setName(string name);
+		string getName();
 		void setNameFun();
-				
+		void addToInventory(item target);
+		item inventory;
 
 		// Not sure if should be in the player class. Doesn't need to be.
-		int contains(std::string word, std::vector<char> check);
+		int contains(string word, vector<char> check);
 
 };
 

@@ -132,8 +132,6 @@ Level::play(Player * main)
 		clear();
 		getmaxyx(stdscr, row, col);	
 
-		// In the top right, print the name of the room you're in
-		mvprintw(0, 0, currScene->getName().c_str());
 
 		// Print a compass out 
 		// that also shows your current movement options.
@@ -143,6 +141,16 @@ Level::play(Player * main)
 		if (currScene->scenes_nearby[2] != -1) {mvprintw((row/2)+2, (col/2), "|");} // South
 		if (currScene->scenes_nearby[3] != -1) {mvprintw((row/2), (col/2)-3, "--");} // West
 
+		// Print your inventory (8 rows up);
+		string invStatus = "Inv: ";
+		if (main->inventory.id != -1) {invStatus.append(main->inventory.name);}
+		mvprintw(row-8, 0, invStatus.c_str());
+
+		// Print the name of the room you're in
+		// (Top left)
+		string location = "Location: "; location.append(currScene->getName());
+		mvprintw(0, 0, location.c_str());
+
 		// Print the description of the room you're in
 		// near the bottom (4 rows up).
 		mvprintw(row-4, 0, currScene->getDescription().c_str());
@@ -150,9 +158,10 @@ Level::play(Player * main)
 	
 		// Collect a response at bottom of screen.
 		move(row-1, 0);
-		getstr(response);
-
-		sep_response = separate(response, ' ');
+		do {
+			getstr(response);
+			sep_response = separate(response, ' ');
+		} while (sep_response.size() == 0);
 
 		// Try to travel to a different room.
 		if (sep_response[0] == "go" && sep_response.size() > 1) 
@@ -177,6 +186,7 @@ Level::play(Player * main)
 		// List all objects in this room.
 		} else if (sep_response[0] == "look" || sep_response[0] == "inspect") 
 		{
+			// Weird structure to correctly use commas
 			string items = "Items here: ";
 			for (int i = 0; i < currScene->items_nearby.size()-1; i++) 
 			{
@@ -189,6 +199,51 @@ Level::play(Player * main)
 			mvprintw(row-4, 0, items.c_str());
 			move(row-1, 0);
 			getch();
+		
+		// Try to pick up item
+		} else if (sep_response[0] == "get" && sep_response.size() > 1)
+		{
+
+			// Kind of confusing? Doesn't save a lot of space.
+			vector<item> items = currScene->items_nearby;
+
+			// Loop through all items to find matching name
+			for(int i = 0; i < items.size(); i++) 
+			{
+				if (items[i].name == sep_response[1]) 
+				{
+					// Holds string to print what happened
+					string temp = "";
+
+					// Get ref to what was in inv
+					item holder = main->inventory;
+
+					// Remove what you're getting from scene's inventory
+					currScene->items_nearby.erase(currScene->items_nearby.begin() + i);
+
+					// If we already had an item, "drop" it
+					// Meaning put our item into the scene's inventory
+					if (main->inventory.id != -1) 
+					{
+						temp.append("Dropped ");
+						temp.append(main->inventory.name);
+						temp.append(col-temp.length(), ' ');
+						currScene->items_nearby.push_back(holder);
+					}
+					
+					// Add scene item to our inventory
+					// (Overwriting what was there)
+					main->addToInventory(items[i]);
+
+					// Let us know what the deal was
+					temp.append("Picked up ");
+					temp.append(sep_response[1]);
+					temp.append((2*col)-temp.length(), ' ');
+					mvprintw(row-7, 0, temp.c_str());
+					move(row-1,0);
+					getch();
+				}
+			}
 
 		// Quit the game.
 		} else if (sep_response[0] == "quit") 
@@ -199,7 +254,8 @@ Level::play(Player * main)
 			move(row-1, 0);
 			getstr(response);
 			sep_response = separate(response, ' ');
-			if (sep_response[0] == "y" || sep_response[0] == "yes") 
+
+			if (sep_response.size() > 0 && (sep_response[0] == "y" || sep_response[0] == "yes")) 
 			{
 				clear();
 				mvprintw(row-4, 0, "You quitter.");
@@ -208,8 +264,6 @@ Level::play(Player * main)
 				gameOver = 1;
 			}
 		}
-
-
 	}
 
 

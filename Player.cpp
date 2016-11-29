@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Scene.h"
 #include <vector>
 #include <string>
 #include <time.h>
@@ -9,6 +10,7 @@ Player::Player()
 	srand(time(0));
 	this->age = 0;
 	this->name = "Nobody";
+	this->inventory = {-1, "nothing"};
 }
 
 Player::Player(int age, std::string name) 
@@ -16,7 +18,7 @@ Player::Player(int age, std::string name)
 	srand(time(0));
 	this->age = age;
 	this->name = name;
-
+	this->inventory = {-1, "nothing"};
 }
 
 void
@@ -75,8 +77,8 @@ Player::generateName()
 }
 
 void 
-Player::setNameFun() {
-
+Player::setNameFun() 
+{
         // Pick a name!
         char * response = new char[10]; std::string temp_name;
         do {
@@ -90,6 +92,9 @@ Player::setNameFun() {
         this->setName(temp_name);
 
 }
+
+void
+Player::addToInventory(item target) {this->inventory = target;}
 
 // Returns 1 if the string word has any letters that are in check.
 // Otherwise, returns 0.
