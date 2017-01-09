@@ -186,20 +186,27 @@ Level::play(Player * main)
 		// List all objects in this room.
 		} else if (sep_response[0] == "look" || sep_response[0] == "inspect") 
 		{
-			// Weird structure to correctly use commas
-			string items = "Items here: ";
-			for (int i = 0; i < currScene->items_nearby.size()-1; i++) 
-			{
-				items.append(currScene->items_nearby[i].name);
-				items.append(", "); 
-			}
-			items.append(currScene->items_nearby[currScene->items_nearby.size()-1].name);
-			items.append((3 * (col)) - items.length(), ' ');
+			// Check if there even are any items
+			if (currScene->items_nearby.size() == 0) {
+				mvprintw(row-3, 0, "No items here!");
+			} else {
+			
+				// Weird structure to correctly use commas
+				string items = "Items here: ";
+				for (int i = 0; i < currScene->items_nearby.size()-1; i++) 
+				{
+					items.append(currScene->items_nearby[i].name);
+					items.append(", "); 
+				}
+				items.append(currScene->items_nearby[currScene->items_nearby.size()-1].name);
+				items.append((3 * (col)) - items.length(), ' ');
 
-			mvprintw(row-4, 0, items.c_str());
+				mvprintw(row-4, 0, items.c_str());
+			}
+
 			move(row-1, 0);
 			getch();
-		
+
 		// Try to pick up item
 		} else if (sep_response[0] == "get" && sep_response.size() > 1)
 		{
@@ -246,6 +253,21 @@ Level::play(Player * main)
 			}
 
 		// Quit the game.
+		} else if (sep_response[0] == "drop") {
+	
+			if (main->inventory.id == -1) {
+				mvprintw(row-3, 0, "Nothing to drop!");
+			} else {
+				string temp = "Dropped ";
+				temp.append(main->inventory.name);
+				mvprintw(row-3, 0, temp.c_str());
+				currScene->items_nearby.push_back(main->inventory);
+				main->addToInventory({-1, "nothing"});
+			}
+		
+			getch();
+			
+
 		} else if (sep_response[0] == "quit") 
 		{
 			clear();
